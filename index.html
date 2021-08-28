@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>Palindrome Birthday Checker</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</head>
+<body>
+    
+    <div class="pagewrap">
+        <nav class="navigation container">
+            <div class="nav-items">
+                <div class="nav-repo">
+                    <a href="https://github.com/dev-enforced/palindrome-birthday-mark13" target="_blank" class="nav-link">
+                        <i class="bx bxl-github"></i>
+                    </a>
+                </div>
+                <h1 class="nav-title">PALINDROME BIRTHDAY CHECKER 🎁</h1>
+            </div>
+        </nav>
+
+        <div class="main-content">
+            <div class="main-privacy">
+                <div class="close">
+                    <span id="remove" role="img" aria-labelledby="crossIcon">❌</span>
+                </div>
+                <strong>
+                    Privacy Notice!!
+                </strong>
+                We won't store your personal details.
+                <p>Checks whether your birthday is palindrome or not. <br>The birthday is being checked in the following formats: <br> dd/mm/yyyy, mm/dd/yyyy, yyyy/dd/mm,<br> dd/mm/yy, mm/dd/yy, yy/mm/dd</p>
+            </div>
+            <div class="main-data">
+                <form id="main-form">
+                    <label for="name">Name</label>
+                    <input type="text" name="userName" id="name" required="required" placeholder="eg. James Bond">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" name="BirthDate" id="dob" required>
+                    <div class="buton">
+                        <button type="submit" id="btn-submit">CHECK</button>
+                        <button id="btn-reset">RESET</button>
+                    </div>
+                </form>
+            </div>
+            <div class="loading-show">
+                <lottie-player src="https://assets7.lottiefiles.com/private_files/lf30_dspyqdxv.json" background="transparent"
+                    speed="1" loop autoplay></lottie-player>
+            </div>
+            <div class="main-output">
+                <p id="main-msg"></p>
+                <img src="" alt="Funny Indicator" id="main-img">
+            </div>
+        </div>
+        <footer class="footer">
+            <div class="footer-tagline">
+                <h2>Made with love by Dev-Enforced.Available on:</h2>
+            </div>
+            <ul class="footer-socials">
+                <li class="footer-inline">
+                    <a class="footer-links" rel="noopener noreferrer" href="https://github.com/dev-enforced">
+                        <i class="bx bxl-github"></i>
+                    </a>
+                </li>
+                <li class="footer-inline">
+                    <a class="footer-links" target="_blank" rel="noopener noreferrer"
+                        href="https://twitter.com/devenforced">
+                        <i class="bx bxl-twitter"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+    <script src="app.js" type="text/javascript" defer></script>
+</body>
+</html>
