@@ -191,8 +191,7 @@ function formResponseHandler(event){
     setTimeout(()=>{
         loadingAnimate.style.display='none'
         outputDiv.style.display='block'
-        
-            responseGiver(nameValue,dobValue)
+        responseGiver(nameValue,dobValue)
         
     },1500)
 
@@ -212,6 +211,7 @@ function responseGiver(nameValue,dobValue){
     var checker=checkPalindromeForAllDateFormats(date);
     if(checker){ 
         outputMsg.innerText=`Yay ${nameValue} your birthday is a palindrome`;
+        outputDiv.style.backgroundColor='#77ACF1'
         outputMsg.style.color='#FFC107';
         outputImg.src='images/happy-gif.gif'
     }else{
