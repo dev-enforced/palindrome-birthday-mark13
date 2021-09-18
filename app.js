@@ -216,9 +216,11 @@ function responseGiver(nameValue,dobValue){
         outputImg.src='images/happy-gif.gif'
     }else{
         var [c1,d1]=getNextPalindromeDate(date);
-        var [c2,d2]=getPrevPalindromeDate(date)
+        var [c2,d2]=getPrevPalindromeDate(date);
+        var d1Mod=convertDateToString(d1);
+        var d2Mod=convertDateToString(d2);
         outputDiv.style.backgroundColor='black'
-        outputMsg.innerText=`OOPS ${nameValue}! Your birthday is not a palindrome. The next palindrome date is on ${d1.day}-${d1.month}-${d1.year} which is ${c1} days away.The previous palindrome date was on ${d2.day}-${d2.month}-${d2.year} which is ${c2} days away.`
+        outputMsg.innerText=`OOPS ${nameValue}! Your birthday is not a palindrome. The next palindrome date is on ${d1Mod.day}-${d1Mod.month}-${d1Mod.year} which is ${c1} ${c1>1?"days":"day"} away.The previous palindrome date was on ${d2Mod.day}-${d2Mod.month}-${d2Mod.year} which was ${c2} ${c2>1?"days":"day"} away.`
         outputMsg.style.color='#F55C47'
         outputImg.src='images/sad-theme.gif'
     }
