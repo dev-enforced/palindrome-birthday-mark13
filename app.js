@@ -71,6 +71,19 @@ function checkPalindromeForAllDateFormats(date){
     }
     return status
 }
+
+function getPalindromeDateFormat(date){
+    var dateFormats=["ddmmyyyy","mmddyyyy","yyyyddmm","ddmmyy","mmddyy","yyddmm"];
+    var counter=0;
+    var newDateArray=getAllDateFormats(date);
+    for(let i=0;i<newDateArray.length;i++){
+        if(checkPalindrome(newDateArray[i])){
+            counter=i;
+            break;
+        }
+    }
+    return dateFormats[counter];
+}
 function checkLeapYear(year){
     if(year%400===0 || year%4===0 && year%100!==0){
         return true;
@@ -209,18 +222,21 @@ function responseGiver(nameValue,dobValue){
         year:Number(dobSplitter[0])
     }
     var checker=checkPalindromeForAllDateFormats(date);
-    if(checker){ 
-        outputMsg.innerText=`Yay ${nameValue} your birthday is a palindrome`;
+    if(checker){
+        var df=getPalindromeDateFormat(date); 
+        outputMsg.innerText=`Yay ${nameValue} your birthday is a palindrome in the format ${df}.`;
         outputDiv.style.backgroundColor='#77ACF1'
         outputMsg.style.color='#FFC107';
         outputImg.src='images/happy-gif.gif'
     }else{
         var [c1,d1]=getNextPalindromeDate(date);
         var [c2,d2]=getPrevPalindromeDate(date);
+        var df1=getPalindromeDateFormat(d1);
+        var df2=getPalindromeDateFormat(d2);
         var d1Mod=convertDateToString(d1);
         var d2Mod=convertDateToString(d2);
         outputDiv.style.backgroundColor='black'
-        outputMsg.innerText=`OOPS ${nameValue}! Your birthday is not a palindrome. The next palindrome date is on ${d1Mod.day}-${d1Mod.month}-${d1Mod.year} which is ${c1} ${c1>1?"days":"day"} away.The previous palindrome date was on ${d2Mod.day}-${d2Mod.month}-${d2Mod.year} which was ${c2} ${c2>1?"days":"day"} away.`
+        outputMsg.innerText=`OOPS ${nameValue}! Your birthday is not a palindrome. The next palindrome date is on ${d1Mod.day}-${d1Mod.month}-${d1Mod.year} (format of palindrome: ${df1}) which is ${c1} ${c1>1?"days":"day"} away.The previous palindrome date was on ${d2Mod.day}-${d2Mod.month}-${d2Mod.year} (format of palindrome: ${df2}) which was ${c2} ${c2>1?"days":"day"} away.`
         outputMsg.style.color='#F55C47'
         outputImg.src='images/sad-theme.gif'
     }
