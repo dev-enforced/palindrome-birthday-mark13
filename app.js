@@ -1,37 +1,37 @@
-var privacyNotice=document.querySelector("#remove");
-var privacyDiv=document.querySelector(".main-privacy");
+const privacyNotice=document.querySelector("#remove");
+const privacyDiv=document.querySelector(".main-privacy");
 
-var userName=document.querySelector("#name");
-var dateCollector=document.querySelector("#dob");
+const userName=document.querySelector("#name");
+const dateCollector=document.querySelector("#dob");
 
-var submitIco=document.querySelector("#btn-submit");
-var form=document.querySelector("#main-form");
-var resetIco=document.querySelector("#btn-reset")
+const submitIco=document.querySelector("#btn-submit");
+const form=document.querySelector("#main-form");
+const resetIco=document.querySelector("#btn-reset")
 
-var loadingAnimate=document.querySelector(".loading-show")
-var outputDiv=document.querySelector(".main-output");
-var outputMsg=document.querySelector("#main-msg");
-var outputImg=document.querySelector("#main-img")
-var daysInMonth=[31,28,31,30,31,30,31,31,30,31,30,31]
+const loadingAnimate=document.querySelector(".loading-show")
+const outputDiv=document.querySelector(".main-output");
+const outputMsg=document.querySelector("#main-msg");
+const outputImg=document.querySelector("#main-img")
+const daysInMonth=[31,28,31,30,31,30,31,31,30,31,30,31]
 
 
 
-function reverseFormat(sentence){
-    var sentenceArr=sentence.split("");
-    var sentenceArrReversed=sentenceArr.reverse();
-    var reversed=sentenceArrReversed.join("");
+const reverseFormat=(sentence)=>{
+    let sentenceArr=sentence.split("");
+    let sentenceArrReversed=sentenceArr.reverse();
+    let reversed=sentenceArrReversed.join("");
     return reversed;
 }
 
-function checkPalindrome(sentence){
-    var reverseSentence=reverseFormat(sentence);
+const checkPalindrome=(sentence)=>{
+    let reverseSentence=reverseFormat(sentence);
     return sentence===reverseSentence;
 }
 
 
 
-function convertDateToString(date){
-    var dateStr={day:'',month:'',year:''};
+const convertDateToString=(date)=>{
+    let dateStr={day:'',month:'',year:''};
     if(date.day<10){
         dateStr.day='0'+date.day;
     }else{
@@ -47,22 +47,22 @@ function convertDateToString(date){
     dateStr.year=date.year.toString()
     return dateStr;
 }
-function getAllDateFormats(date){
-    var dateStr=convertDateToString(date);
+const getAllDateFormats=(date)=>{
+    let dateStr=convertDateToString(date);
 
-    var ddmmyyyy=dateStr.day+dateStr.month+dateStr.year;
-    var mmddyyyy=dateStr.month+dateStr.day+dateStr.year;
-    var yyyyddmm=dateStr.year+dateStr.day+dateStr.month;
-    var ddmmyy=dateStr.day+dateStr.month+dateStr.year.slice(-2);
-    var mmddyy=dateStr.month+dateStr.day+dateStr.year.slice(-2);
-    var yyddmm=dateStr.year.slice(-2)+dateStr.day+dateStr.month;
+    let ddmmyyyy=dateStr.day+dateStr.month+dateStr.year;
+    let mmddyyyy=dateStr.month+dateStr.day+dateStr.year;
+    let yyyyddmm=dateStr.year+dateStr.day+dateStr.month;
+    let ddmmyy=dateStr.day+dateStr.month+dateStr.year.slice(-2);
+    let mmddyy=dateStr.month+dateStr.day+dateStr.year.slice(-2);
+    let yyddmm=dateStr.year.slice(-2)+dateStr.day+dateStr.month;
 
     return [ddmmyyyy,mmddyyyy,yyyyddmm,ddmmyy,mmddyy,yyddmm];
 }
 
-function checkPalindromeForAllDateFormats(date){
-    var status=false;
-    var newDateArray=getAllDateFormats(date);
+const checkPalindromeForAllDateFormats=(date)=>{
+    let status=false;
+    let newDateArray=getAllDateFormats(date);
     for(let i of newDateArray){
         if(checkPalindrome(i)){
             status=true;
@@ -72,10 +72,10 @@ function checkPalindromeForAllDateFormats(date){
     return status
 }
 
-function getPalindromeDateFormat(date){
-    var dateFormats=["ddmmyyyy","mmddyyyy","yyyyddmm","ddmmyy","mmddyy","yyddmm"];
-    var counter=0;
-    var newDateArray=getAllDateFormats(date);
+const getPalindromeDateFormat=(date)=>{
+    let dateFormats=["ddmmyyyy","mmddyyyy","yyyyddmm","ddmmyy","mmddyy","yyddmm"];
+    let counter=0;
+    let newDateArray=getAllDateFormats(date);
     for(let i=0;i<newDateArray.length;i++){
         if(checkPalindrome(newDateArray[i])){
             counter=i;
@@ -84,7 +84,7 @@ function getPalindromeDateFormat(date){
     }
     return dateFormats[counter];
 }
-function checkLeapYear(year){
+const checkLeapYear=(year)=>{
     if(year%400===0 || year%4===0 && year%100!==0){
         return true;
     }else{
@@ -92,10 +92,10 @@ function checkLeapYear(year){
     }
 
 }
-function getNextDate(date){
-    var day=date.day+1;
-    var month=date.month;
-    var year=date.year;
+const getNextDate=(date)=>{
+    let day=date.day+1;
+    let month=date.month;
+    let year=date.year;
 
     if(month===2){
         if(checkLeapYear(year)){
@@ -128,9 +128,9 @@ function getNextDate(date){
     
 }
 
-function getNextPalindromeDate(date){
-    var ctr=0;
-    var nextDate=getNextDate(date);
+const getNextPalindromeDate=(date)=>{
+    let ctr=0;
+    let nextDate=getNextDate(date);
     while(1){
             ctr++;
             var signal=checkPalindromeForAllDateFormats(nextDate);
@@ -143,10 +143,10 @@ function getNextPalindromeDate(date){
     return [ctr,nextDate]
 }
 
-function getPrevDate(date){
-    var day=date.day-1;
-    var month=date.month;
-    var year=date.year;
+const getPrevDate=(date)=>{
+    let day=date.day-1;
+    let month=date.month;
+    let year=date.year;
 
     if(month===3){
         if(checkLeapYear(year)){
@@ -178,12 +178,12 @@ function getPrevDate(date){
     }
 }
 
-function getPrevPalindromeDate(date){
-    var ctr=0;
-    var prevDate=getPrevDate(date);
+const getPrevPalindromeDate=(date)=>{
+    let ctr=0;
+    let prevDate=getPrevDate(date);
     while(1){
             ctr++;
-            var signal=checkPalindromeForAllDateFormats(prevDate);
+            let signal=checkPalindromeForAllDateFormats(prevDate);
             if(signal){
                break; 
             }
@@ -193,10 +193,10 @@ function getPrevPalindromeDate(date){
     return [ctr,prevDate]
 }
 
-function formResponseHandler(event){
+const formResponseHandler=(event)=>{
     event.preventDefault();
-    var nameValue=userName.value;
-    var dobValue=dateCollector.value;
+    let nameValue=userName.value;
+    let dobValue=dateCollector.value;
 
     loadingAnimate.style.display="block";
     outputDiv.style.display='none'
@@ -214,27 +214,27 @@ function formResponseHandler(event){
 
 
 
-function responseGiver(nameValue,dobValue){
-    var dobSplitter=dobValue.split("-");
-    var date={
+const responseGiver=(nameValue,dobValue)=>{
+    let dobSplitter=dobValue.split("-");
+    let date={
         day:Number(dobSplitter[2]),
         month:Number(dobSplitter[1]),
         year:Number(dobSplitter[0])
     }
-    var checker=checkPalindromeForAllDateFormats(date);
+    let checker=checkPalindromeForAllDateFormats(date);
     if(checker){
-        var df=getPalindromeDateFormat(date); 
+        let df=getPalindromeDateFormat(date); 
         outputMsg.innerText=`Yay ${nameValue} your birthday is a palindrome in the format ${df}.`;
         outputDiv.style.backgroundColor='#77ACF1'
         outputMsg.style.color='#FFC107';
         outputImg.src='images/happy-gif.gif'
     }else{
-        var [c1,d1]=getNextPalindromeDate(date);
-        var [c2,d2]=getPrevPalindromeDate(date);
-        var df1=getPalindromeDateFormat(d1);
-        var df2=getPalindromeDateFormat(d2);
-        var d1Mod=convertDateToString(d1);
-        var d2Mod=convertDateToString(d2);
+        let [c1,d1]=getNextPalindromeDate(date);
+        let [c2,d2]=getPrevPalindromeDate(date);
+        let df1=getPalindromeDateFormat(d1);
+        let df2=getPalindromeDateFormat(d2);
+        let d1Mod=convertDateToString(d1);
+        let d2Mod=convertDateToString(d2);
         outputDiv.style.backgroundColor='black'
         outputMsg.innerText=`OOPS ${nameValue}! Your birthday is not a palindrome. The next palindrome date is on ${d1Mod.day}-${d1Mod.month}-${d1Mod.year} (format of palindrome: ${df1}) which is ${c1} ${c1>1?"days":"day"} away.The previous palindrome date was on ${d2Mod.day}-${d2Mod.month}-${d2Mod.year} (format of palindrome: ${df2}) which was ${c2} ${c2>1?"days":"day"} away.`
         outputMsg.style.color='#F55C47'
